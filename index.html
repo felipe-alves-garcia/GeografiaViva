@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Para que serve estudar Geografia?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        nunito: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        geo: {
+                            green: '#16a34a',
+                            greenLight: '#bbf7d0',
+                            greenDark: '#166534',
+                            blue: '#2563eb',
+                            blueLight: '#bfdbfe',
+                            blueDark: '#1e3a8a',
+                            white: '#ffffff',
+                            offWhite: '#f0fdf4',
+                            cream: '#f0f9ff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { font-family: 'Nunito', sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce-in {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes blob {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+            75% { border-radius: 60% 40% 60% 30% / 60% 40% 30% 70%; }
+        }
+
+        .float { animation: float 3s ease-in-out infinite; }
+        .float-delay { animation: float 3s ease-in-out 1s infinite; }
+        .float-delay-2 { animation: float 3s ease-in-out 2s infinite; }
+        .pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+        .slide-up { animation: slide-up 0.8s ease-out forwards; }
+        .bounce-in { animation: bounce-in 0.6s ease-out forwards; }
+        .spin-slow { animation: spin-slow 20s linear infinite; }
+        .wave-emoji { display: inline-block; animation: wave 2.5s infinite; transform-origin: 70% 70%; }
+        .blob { animation: blob 8s ease-in-out infinite; }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #166534 0%, #16a34a 30%, #2563eb 70%, #1e3a8a 100%);
+        }
+
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #16a34a, #2563eb, transparent);
+            height: 3px;
+        }
+
+        .emoji-bg {
+            font-size: 8rem;
+            opacity: 0.06;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f0fdf4; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(#16a34a, #2563eb); border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-geo-offWhite text-gray-800 overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2 text-geo-green font-extrabold text-lg md:text-xl">
+                <span class="text-2xl">🌍</span>
+                <span>Geografia Viva</span>
+            </a>
+            <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-green-50 transition">
+                <i data-lucide="menu" class="w-6 h-6 text-geo-greenDark"></i>
+            </button>
+            <div class="hidden md:flex items-center gap-6 text-sm font-bold">
+                <a href="#dia-a-dia" class="text-gray-600 hover:text-geo-green transition">📍 Dia a dia</a>
+                <a href="#importancia" class="text-gray-600 hover:text-geo-green transition">📚 Importância</a>
+                <a href="#profissoes" class="text-gray-600 hover:text-geo-green transition">💼 Profissões</a>
+                <a href="#meio-ambiente" class="text-gray-600 hover:text-geo-green transition">🌱 Meio ambiente</a>
+                <a href="#voce" class="text-gray-600 hover:text-geo-green transition">🌎 Você</a>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t px-4 pb-4">
+            <div class="flex flex-col gap-3 pt-3 text-base font-bold">
+                <a href="#dia-a-dia" class="text-gray-600 hover:text-geo-green transition py-1">📍 Dia a dia</a>
+                <a href="#importancia" class="text-gray-600 hover:text-geo-green transition py-1">📚 Importância</a>
+                <a href="#profissoes" class="text-gray-600 hover:text-geo-green transition py-1">💼 Profissões</a>
+                <a href="#meio-ambiente" class="text-gray-600 hover:text-geo-green transition py-1">🌱 Meio ambiente</a>
+                <a href="#voce" class="text-gray-600 hover:text-geo-green transition py-1">🌎 Você</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <!-- Decorative blobs -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-white/10 blob"></div>
+        <div class="absolute bottom-20 right-10 w-48 h-48 bg-white/10 blob" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-yellow-300/20 blob" style="animation-delay: 4s;"></div>
+
+        <!-- Floating emojis -->
+        <div class="absolute top-24 right-[15%] text-4xl float hidden md:block" aria-hidden="true">🏔️</div>
+        <div class="absolute bottom-32 left-[10%] text-4xl float-delay hidden md:block" aria-hidden="true">🌳</div>
+        <div class="absolute top-1/3 right-[8%] text-3xl float-delay-2 hidden md:block" aria-hidden="true">🌦️</div>
+        <div class="absolute bottom-40 right-[30%] text-3xl float hidden md:block" aria-hidden="true">🏙️</div>
+
+        <div class="max-w-6xl mx-auto px-4 pt-24 pb-16 text-center relative z-10">
+            <div class="bounce-in">
+                <span class="text-7xl md:text-9xl block mb-4">🌍</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 slide-up">
+                Para que serve<br>estudar Geografia?
+            </h1>
+            <p class="text-lg md:text-2xl text-green-100 max-w-2xl mx-auto mb-8 leading-relaxed slide-up" style="animation-delay: 0.3s;">
+                A Geografia está presente em tudo ao nosso redor! Ela nos ajuda a entender o lugar onde vivemos, as mudanças no meio ambiente e como as pessoas se relacionam com o espaço.
+            </p>
+            <a href="#dia-a-dia" class="inline-flex items-center gap-2 bg-white text-geo-greenDark font-extrabold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <span>Vamos explorar!</span>
+                <i data-lucide="arrow-down" class="w-5 h-5"></i>
+            </a>
+        </div>
+
+        <!-- Wave divider -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,80 C360,20 720,100 1440,40 L1440,120 L0,120 Z" fill="#f0fdf4"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- SECTION 1 – DIA A DIA -->
+    <section id="dia-a-dia" class="py-16 md:py-24 relative">
+        <span class="emoji-bg top-4 right-4">📍</span>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="animate-on-scroll">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-geo-green text-white text-sm font-bold px-4 py-1.5 rounded-full">Seção 1</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-geo-greenDark mb-6">
+                    📍 Geografia está em todo lugar!
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="animate-on-scroll">
+                    <p class="text-lg md:text-xl leading-relaxed text-gray-700 mb-6">
+                        Você já percebeu que a Geografia faz parte da sua vida <strong>todos os dias</strong>? Quando você observa o clima, o trânsito, o bairro onde mora ou até usa um mapa no celular, está utilizando conhecimentos geográficos.
+                    </p>
+                    <p class="text-lg md:text-xl leading-relaxed text-gray-700">
+                        A Geografia ajuda a <strong class="text-geo-green">entender o mundo</strong> ao nosso redor. 🌐
+                    </p>
+                </div>
+                <div class="animate-on-scroll">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="http://static.photos/nature/640x360/42" alt="Paisagem natural" class="w-full h-64 md:h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-geo-greenDark/40 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white font-bold text-lg">
+                            🗺️ O mundo é o seu mapa!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily life examples -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 animate-on-scroll">
+                <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md border border-green-100">
+                    <span class="text-4xl block mb-2">🌤️</span>
+                    <span class="font-bold text-geo-greenDark text-sm md:text-base">Prever o clima</span>
+                </div>
+                <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md border border-blue-100">
+                    <span class="text-4xl block mb-2">📱</span>
+                    <span class="font-bold text-geo-blueDark text-sm md:text-base">Usar mapas</span>
+                </div>
+                <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md border border-green-100">
+                    <span class="text-4xl block mb-2">🏠</span>
+                    <span class="font-bold text-geo-greenDark text-sm md:text-base">Conhecer o bairro</span>
+                </div>
+                <div class="bg-white rounded-2xl p-5 text-center card-hover shadow-md border border-blue-100">
+                    <span class="text-4xl block mb-2">🚗</span>
+                    <span class="font-bold text-geo-blueDark text-sm md:text-base">Entender o trânsito</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-md mx-auto"></div>
+
+    <!-- SECTION 2 – IMPORTÂNCIA -->
+    <section id="importancia" class="py-16 md:py-24 relative bg-gradient-to-b from-geo-cream to-white">
+        <span class="emoji-bg top-8 left-4">📚</span>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="animate-on-scroll text-center mb-14">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <span class="bg-geo-blue text-white text-sm font-bold px-4 py-1.5 rounded-full">Seção 2</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-geo-blueDark mb-4">
+                    📚 Qual a importância da Geografia?
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Estudar Geografia é importante para compreender o planeta, o meio ambiente e a sociedade. Com ela, conseguimos entender melhor como o mundo funciona e como fazemos parte dele. Veja alguns exemplos:
+                </p>
+            </div>
+
+            <!-- Cards grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Clima -->
+                <div class="animate-on-scroll bg-white rounded-3xl overflow-hidden shadow-lg card-hover border-b-4 border-yellow-400">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="http://static.photos/nature/640x360/15" alt="Clima e tempo" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-yellow-900/50 to-transparent"></div>
+                        <span class="absolute top-3 left-3 text-5xl">🌦️</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 mb-3">Clima</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            A Geografia ajuda a entender como funciona o clima em diferentes regiões do planeta. Com isso, conseguimos nos preparar melhor para mudanças como frio, calor ou chuvas intensas. Também aprendemos sobre problemas como o <strong class="text-yellow-600">aquecimento global</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Relevo -->
+                <div class="animate-on-scroll bg-white rounded-3xl overflow-hidden shadow-lg card-hover border-b-4 border-geo-green">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="http://static.photos/nature/640x360/88" alt="Relevo e montanhas" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-green-900/50 to-transparent"></div>
+                        <span class="absolute top-3 left-3 text-5xl">🏔️</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 mb-3">Relevo</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            O relevo mostra as formas da superfície da Terra, como montanhas, planícies e vales. Esse conhecimento ajuda a entender onde é mais fácil construir cidades ou plantar. Também explica fenômenos naturais como <strong class="text-geo-green">deslizamentos</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- População -->
+                <div class="animate-on-scroll bg-white rounded-3xl overflow-hidden shadow-lg card-hover border-b-4 border-purple-500">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="http://static.photos/people/640x360/25" alt="População e sociedade" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent"></div>
+                        <span class="absolute top-3 left-3 text-5xl">👥</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 mb-3">População</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            A Geografia estuda como as pessoas vivem e se organizam nos diferentes lugares do mundo. Aprendemos sobre crescimento populacional, migrações e distribuição das pessoas. Isso ajuda a compreender melhor a <strong class="text-purple-600">sociedade</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cidades -->
+                <div class="animate-on-scroll bg-white rounded-3xl overflow-hidden shadow-lg card-hover border-b-4 border-geo-blue md:col-span-1 lg:col-span-1">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="http://static.photos/cityscape/640x360/60" alt="Cidades e urbanização" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+                        <span class="absolute top-3 left-3 text-5xl">🏙️</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 mb-3">Cidades</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Com a Geografia, entendemos como as cidades são organizadas e como elas crescem. Aprendemos sobre trânsito, moradia, infraestrutura e problemas urbanos. Isso ajuda a pensar em <strong class="text-geo-blue">soluções</strong> para melhorar a vida nas cidades.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Natureza -->
+                <div class="animate-on-scroll bg-white rounded-3xl overflow-hidden shadow-lg card-hover border-b-4 border-emerald-500 md:col-span-2 lg:col-span-2">
+                    <div class="grid md:grid-cols-2 h-full">
+                        <div class="relative h-48 md:h-full overflow-hidden">
+                            <img src="http://static.photos/nature/640x360/100" alt="Natureza e meio ambiente" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-emerald-900/50 to-transparent"></div>
+                            <span class="absolute top-3 left-3 text-5xl">🌳</span>
+                        </div>
+                        <div class="p-6 flex flex-col justify-center">
+                            <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 mb-3">Natureza</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                A Geografia ensina a importância de preservar o meio ambiente e os recursos naturais. Aprendemos como nossas ações impactam a natureza e o planeta. Isso nos ajuda a desenvolver atitudes mais <strong class="text-emerald-600">sustentáveis</strong> no dia a dia. 🌿
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-md mx-auto"></div>
+
+    <!-- SECTION 3 – PROFISSÕES -->
+    <section id="profissoes" class="py-16 md:py-24 relative overflow-hidden">
+        <span class="emoji-bg top-4 right-8">💼</span>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="animate-on-scroll text-center mb-14">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <span class="bg-geo-green text-white text-sm font-bold px-4 py-1.5 rounded-full">Seção 3</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-geo-greenDark mb-4">
+                    💼 Onde a Geografia é usada?
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    A Geografia está presente em várias profissões! Ela ajuda a planejar cidades, cuidar do meio ambiente e entender fenômenos naturais.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 animate-on-scroll">
+                <!-- Professor -->
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md border border-green-100 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-geo-green group-hover:scale-110 transition-all duration-300">
+                        <span class="text-3xl md:text-4xl">👨‍🏫</span>
+                    </div>
+                    <h4 class="font-extrabold text-geo-greenDark text-sm md:text-base">Professores</h4>
+                    <p class="text-xs text-gray-500 mt-1">Ensinam sobre o mundo</p>
+                </div>
+
+                <!-- Engenheiro -->
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md border border-blue-100 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-geo-blue group-hover:scale-110 transition-all duration-300">
+                        <span class="text-3xl md:text-4xl">👷</span>
+                    </div>
+                    <h4 class="font-extrabold text-geo-blueDark text-sm md:text-base">Engenheiros</h4>
+                    <p class="text-xs text-gray-500 mt-1">Planejam construções</p>
+                </div>
+
+                <!-- Urbanista -->
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md border border-purple-100 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:scale-110 transition-all duration-300">
+                        <span class="text-3xl md:text-4xl">🏙️</span>
+                    </div>
+                    <h4 class="font-extrabold text-purple-800 text-sm md:text-base">Urbanistas</h4>
+                    <p class="text-xs text-gray-500 mt-1">Organizam cidades</p>
+                </div>
+
+                <!-- Ambientalista -->
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md border border-emerald-100 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-emerald-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:scale-110 transition-all duration-300">
+                        <span class="text-3xl md:text-4xl">🌱</span>
+                    </div>
+                    <h4 class="font-extrabold text-emerald-800 text-sm md:text-base">Ambientalistas</h4>
+                    <p class="text-xs text-gray-500 mt-1">Cuidam da natureza</p>
+                </div>
+
+                <!-- Meteorologista -->
+                <div class="bg-white rounded-2xl p-6 text-center card-hover shadow-md border border-yellow-100 group col-span-2 md:col-span-1">
+                    <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-yellow-500 group-hover:scale-110 transition-all duration-300">
+                        <span class="text-3xl md:text-4xl">🌦️</span>
+                    </div>
+                    <h4 class="font-extrabold text-yellow-700 text-sm md:text-base">Meteorologistas</h4>
+                    <p class="text-xs text-gray-500 mt-1">Preveem o clima</p>
+                </div>
+            </div>
+
+            <!-- Illustration -->
+            <div class="mt-12 animate-on-scroll">
+                <div class="bg-gradient-to-r from-geo-green/10 to-geo-blue/10 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row items-center gap-6">
+                    <div class="relative w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
+                        <div class="absolute inset-0 bg-geo-green/20 rounded-full pulse-slow"></div>
+                        <img src="http://static.photos/education/640x360/7" alt="Profissionais usando Geografia" class="w-full h-full object-cover rounded-full border-4 border-white shadow-lg relative z-10">
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-geo-greenDark mb-3">A Geografia abre portas! 🚪</h3>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">
+                            Seja na sala de aula, em um canteiro de obras, em um escritório de planejamento urbano ou em campo analisando o meio ambiente, o conhecimento geográfico é <strong>essencial</strong>. Muitas profissões dependem dessa ciência para tomar decisões importantes que impactam a vida de todos nós.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-md mx-auto"></div>
+
+    <!-- SECTION 4 – MEIO AMBIENTE -->
+    <section id="meio-ambiente" class="py-16 md:py-24 bg-gradient-to-b from-green-50 to-blue-50 relative overflow-hidden">
+        <span class="emoji-bg bottom-4 left-4">🌱</span>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="animate-on-scroll text-center mb-14">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <span class="bg-emerald-500 text-white text-sm font-bold px-4 py-1.5 rounded-full">Seção 4</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-emerald-800 mb-4">
+                    🌱 Cuidando do planeta
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    A Geografia nos ensina a cuidar da natureza. Com esse conhecimento, podemos fazer a diferença!
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12 animate-on-scroll">
+                <!-- Água -->
+                <div class="bg-white rounded-3xl p-8 text-center card-hover shadow-lg relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+                    <span class="text-6xl block mb-4 group-hover:scale-125 transition-transform duration-300">💧</span>
+                    <h3 class="text-xl md:text-2xl font-extrabold text-geo-blueDark mb-3">Economizar água</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        A água é um recurso precioso e finito. Aprender a usar com consciência é essencial para o futuro do nosso planeta.
+                    </p>
+                </div>
+
+                <!-- Poluição -->
+                <div class="bg-white rounded-3xl p-8 text-center card-hover shadow-lg relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gray-400 to-gray-600"></div>
+                    <span class="text-6xl block mb-4 group-hover:scale-125 transition-transform duration-300">🚭</span>
+                    <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 mb-3">Evitar poluição</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Reduzir a poluição do ar, da água e do solo é fundamental para garantir saúde e qualidade de vida para todos.
+                    </p>
+                </div>
+
+                <!-- Áreas verdes -->
+                <div class="bg-white rounded-3xl p-8 text-center card-hover shadow-lg relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-green-400 to-green-600"></div>
+                    <span class="text-6xl block mb-4 group-hover:scale-125 transition-transform duration-300">🌳</span>
+                    <h3 class="text-xl md:text-2xl font-extrabold text-geo-greenDark mb-3">Preservar áreas verdes</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Parques, florestas e jardins são essenciais para equilibrar o meio ambiente e garantir ar puro para respirar.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Callout -->
+            <div class="animate-on-scroll">
+                <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-xl">
+                    <span class="text-5xl md:text-6xl block mb-4">💚</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold mb-3">Pequenas atitudes fazem grande diferença!</h3>
+                    <p class="text-green-100 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+                        Cada gesto conta: fechar a torneira, reciclar o lixo, plantar uma árvore. A mudança começa com você!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-md mx-auto"></div>
+
+    <!-- SECTION 5 – VOCÊ FAZ PARTE -->
+    <section id="voce" class="py-16 md:py-24 relative">
+        <span class="emoji-bg top-8 right-8">🌎</span>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="animate-on-scroll text-center mb-14">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <span class="bg-geo-blue text-white text-sm font-bold px-4 py-1.5 rounded-full">Seção 5</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-geo-blueDark mb-4">
+                    🌎 Você também pode ajudar!
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    Todo mundo pode usar a Geografia para melhorar o lugar onde vive. Observe seu bairro, cuide do meio ambiente e compartilhe o que aprendeu com outras pessoas. <strong>Você pode ser um agente de mudança!</strong>
+                </p>
+            </div>
+
+            <!-- Action steps -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12 animate-on-scroll">
+                <div class="bg-white rounded-3xl p-8 card-hover shadow-lg border-t-4 border-geo-green text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="eye" class="w-8 h-8 text-geo-green"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-extrabold text-gray-800 mb-3">Observar</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Olhe ao redor! Perceba como é o seu bairro, quais problemas existem e o que pode ser melhorado.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 card-hover shadow-lg border-t-4 border-geo-blue text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="heart-handshake" class="w-8 h-8 text-geo-blue"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-extrabold text-gray-800 mb-3">Cuidar</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Faça a sua parte! Cuide do meio ambiente, evite o desperdício e preserva os recursos naturais.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 card-hover shadow-lg border-t-4 border-purple-500 text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="megaphone" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-extrabold text-gray-800 mb-3">Compartilhar</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Espalhe o que aprendeu! Converse com amigos e família sobre a importância da Geografia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Image + text -->
+            <div class="animate-on-scroll">
+                <div class="grid md:grid-cols-2 gap-8 items-center bg-white rounded-3xl overflow-hidden shadow-xl">
+                    <div class="h-64 md:h-full">
+                        <img src="http://static.photos/people/640x360/55" alt="Jovens ajudando a comunidade" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:pr-12">
+                        <span class="text-5xl block mb-3">🤝</span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-geo-greenDark mb-4">Seja um agente de mudança!</h3>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg mb-6">
+                            A mudança começa com pequenas atitudes. Você não precisa ser um especialista para fazer a diferença. Basta olhar ao redor, se importar e agir!
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-geo-greenDark text-sm font-bold px-3 py-1.5 rounded-full">💪 Ação</span>
+                            <span class="bg-blue-100 text-geo-blueDark text-sm font-bold px-3 py-1.5 rounded-full">🌍 Consciência</span>
+                            <span class="bg-purple-100 text-purple-800 text-sm font-bold px-3 py-1.5 rounded-full">❤️ Empatia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL MESSAGE -->
+    <section class="py-16 md:py-24 hero-gradient relative overflow-hidden">
+        <div class="absolute top-10 left-[10%] w-32 h-32 bg-white/10 blob"></div>
+        <div class="absolute bottom-10 right-[15%] w-40 h-40 bg-white/10 blob" style="animation-delay: 3s;"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <div class="animate-on-scroll">
+                <span class="text-7xl md:text-8xl block mb-6 wave-emoji">🌍</span>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                    A Geografia ajuda a entender o mundo e transformar a realidade.
+                </h2>
+                <p class="text-lg md:text-xl text-green-100 leading-relaxed mb-8 max-w-2xl mx-auto">
+                    Estude, observe, cuide e compartilhe. O mundo precisa de gente como você! 💚
+                </p>
+                <a href="#hero" class="inline-flex items-center gap-2 bg-white text-geo-greenDark font-extrabold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                    <span>Voltar ao topo</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+                <span class="text-2xl">🌍</span>
+                <span class="text-white font-extrabold text-lg">Geografia Viva</span>
+            </div>
+            <p class="text-sm">
+                Feito com 💚 para aprender e cuidar do nosso planeta.
+            </p>
+            <p class="text-xs mt-2 text-gray-500">
+                © 2025 Geografia Viva. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden', !menuOpen);
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+
+        // Scroll animations with Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Stagger animations for sibling elements
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
+            // Add stagger delay based on parent context
+            el.dataset.delay = 0;
+            observer.observe(el);
+        });
+
+        // Add stagger delays within grids
+        document.querySelectorAll('.grid').forEach(grid => {
+            const animItems = grid.querySelectorAll('.animate-on-scroll');
+            animItems.forEach((item, i) => {
+                item.dataset.delay = i * 100;
+            });
+        });
+
+        // Smooth active section highlighting in nav
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-geo-green');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-geo-green');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
